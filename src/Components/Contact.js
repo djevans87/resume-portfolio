@@ -25,7 +25,7 @@ class Contact extends Component {
       this.state;
 
     try {
-      const response = await axios.post("/api/contact", {
+      const response = await axios.post("https://intense-escarpment-07556-b4784d2b310e.herokuapp.com/api/contact", {
         contactEmail,
         contactMessage,
         contactName,

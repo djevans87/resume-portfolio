@@ -1,33 +1,34 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
+
 const app = express();
-const port = 5000; // Choose a port number
+const port = process.env.PORT || 5000; // Choose a port number
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
 
 app.post('/api/contact', (req, res) => {
-  // Implement email sending logic here
-  const { contactName, contactEmail, contactSubject, contactMessage } = req.body;
+    const { contactName, contactEmail, contactSubject, contactMessage } = req.body;
 
-  // Example using nodemailer
-  // Replace the following code with your actual email sending logic
-  const nodemailer = require('nodemailer');
+ 
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: 'darian.janelle.evans@gmail.com',
-      pass: 'dcmm zbld iusp zdmn',
-    },
-  });
-
-  const mailOptions = {
-    from: 'darian.janelle.evans@gmail.com',
-    to: 'darian.janelle.evans@gmail.com',
-    subject: contactSubject,
-    text: `Name: ${contactName}\nEmail: ${contactEmail}\nMessage: ${contactMessage}`,
-  };
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_RECIPIENT,
+      subject: contactSubject,
+      text: `Name: ${contactName}\nEmail: ${contactEmail}\nMessage: ${contactMessage}`,
+    };
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
