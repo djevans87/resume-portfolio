@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: 'outlook',
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASSWORD,

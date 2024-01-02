@@ -1,4 +1,4 @@
-web: node server/server.js
+web: cd server && node server\server.js
 
 
 
