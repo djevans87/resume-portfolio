@@ -13,8 +13,8 @@ app.use(cors());
 const transporter = nodemailer.createTransport({
   service: 'outlook',
   auth: {
-    user: 'darianevansresume@outlook.com',
-    pass: 'DareDeej$bk7387!Resume',
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
 
@@ -24,8 +24,8 @@ app.post('/api/contact', (req, res) => {
  
 
     const mailOptions = {
-      from: 'darianevansresume@outlook.com',
-      to: 'darianevansresume@outlook.com',
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_RECIPIENT,
       subject: contactSubject,
       text: `Name: ${contactName}\nEmail: ${contactEmail}\nMessage: ${contactMessage}`,
     };
