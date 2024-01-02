@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
-
+const emailUser = 'darianevansresume@outlook.com';
+const emailPass = 'DareDeej$bk7387!Resume' ;
 const app = express();
 const port = process.env.PORT || 5000; // Choose a port number
 
@@ -13,8 +14,9 @@ app.use(cors());
 const transporter = nodemailer.createTransport({
   service: 'outlook',
   auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD,
+    user: process.env.EMAIL_USER || emailUser,
+    pass: process.env.EMAIL_PASSWORD || emailPass,
+
   },
 });
 
@@ -24,8 +26,8 @@ app.post('/api/contact', (req, res) => {
  
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_RECIPIENT,
+      from: process.env.EMAIL_USER || emailUser,
+      to: process.env.EMAIL_RECIPIENT || emailUser,
       subject: contactSubject,
       text: `Name: ${contactName}\nEmail: ${contactEmail}\nMessage: ${contactMessage}`,
     };
