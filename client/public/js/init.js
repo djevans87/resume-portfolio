@@ -95,7 +95,7 @@ jQuery(document).ready(function($) {
 
       $.ajax({
         type: "POST",
-        url: "http://localhost:5000/api/contact",
+        url: "http://www.darianjevans-backend.com/api/contact",
         data: data,
         success: function(msg) {
           // Message was sent

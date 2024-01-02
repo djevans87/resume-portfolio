@@ -25,7 +25,7 @@ class Contact extends Component {
       this.state;
 
     try {
-      const response = await axios.post("/api/contact", {
+      const response = await axios.post("http://www.darianjevans-backend.com/api/contact", {
         contactEmail,
         contactMessage,
         contactName,
